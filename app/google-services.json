@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1071821334920",
+    "project_id": "chatting-application-dcdf5",
+    "storage_bucket": "chatting-application-dcdf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071821334920:android:0514141f5ec0728ee9f23d",
+        "android_client_info": {
+          "package_name": "com.example.prime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANRDuV4EVUTfGAlOlpCTZtq1qHaOlrfjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
