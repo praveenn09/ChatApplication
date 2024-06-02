@@ -75,6 +75,7 @@ public class SignUp extends AppCompatActivity {
         password=findViewById(R.id.inputPassword);
         confirmPassword=findViewById(R.id.inputRePassword);
         signUp=findViewById(R.id.button);
+        
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
