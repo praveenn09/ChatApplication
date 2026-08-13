@@ -1,63 +1,165 @@
 package com.example.prime.activities;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
-import android.widget.ImageView;
-
 import com.example.prime.R;
+
 import com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton;
 import com.zegocloud.uikit.service.defines.ZegoUIKitUser;
 
 import java.util.Collections;
 
 public class videocall extends AppCompatActivity {
-     EditText secondUserId;
 
-      ZegoSendCallInvitationButton simplecall,vd;
+    private ZegoSendCallInvitationButton voiceCall;
+    private ZegoSendCallInvitationButton videoCall;
+
+    private ImageView backButton;
+
+    private String receiverId = "";
+    private String receiverName = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_videocall);
-        secondUserId=findViewById(R.id.newUserIDSecond);
-      simplecall =findViewById(R.id.voice_call);
-      vd=findViewById(R.id.video_call);
 
-      secondUserId.addTextChangedListener(new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        setContentView(
+                R.layout.activity_videocall
+        );
 
-          }
 
-          @Override
-          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-              String targetUserId=secondUserId.getText().toString();
-              setVoiceCall(targetUserId);
-              setVideoCall(targetUserId);
-          }
+        // =====================================================
+        // GET RECEIVER
+        // =====================================================
 
-          @Override
-          public void afterTextChanged(Editable editable) {
+        receiverId =
+                getIntent()
+                        .getStringExtra("receiverId");
 
-          }
-      });
+        receiverName =
+                getIntent()
+                        .getStringExtra("receiverName");
 
+
+        if (receiverId == null ||
+                receiverId.isEmpty()) {
+
+            Toast.makeText(
+                    this,
+                    "Receiver not found",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            finish();
+
+            return;
+        }
+
+
+        // =====================================================
+        // FIND VIEWS
+        // =====================================================
+
+        backButton =
+                findViewById(
+                        R.id.backFromVideoCall
+                );
+
+        voiceCall =
+                findViewById(
+                        R.id.voice_call
+                );
+
+        videoCall =
+                findViewById(
+                        R.id.video_call
+                );
+
+
+        // =====================================================
+        // BACK BUTTON
+        // =====================================================
+
+        backButton.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+
+                        finish();
+                    }
+                }
+        );
+
+
+        // =====================================================
+        // SET VOICE CALL
+        // =====================================================
+
+        setupVoiceCall();
+
+
+        // =====================================================
+        // SET VIDEO CALL
+        // =====================================================
+
+        setupVideoCall();
     }
-    private void setVoiceCall(String targetUserId) {
-        simplecall.setIsVideoCall(false);
-        simplecall.setResourceID("zego_uikit_call");
-        simplecall.setInvitees(Collections.singletonList(new ZegoUIKitUser(targetUserId)));
+
+
+    // =========================================================
+    // VOICE CALL
+    // =========================================================
+
+    private void setupVoiceCall() {
+
+        voiceCall.setIsVideoCall(
+                false
+        );
+
+        voiceCall.setResourceID(
+                "zego_uikit_call"
+        );
+
+        voiceCall.setInvitees(
+                Collections.singletonList(
+                        new ZegoUIKitUser(
+                                receiverId,
+                                receiverName
+                        )
+                )
+        );
     }
-    private void setVideoCall(String targetUserId) {
-        vd.setIsVideoCall(true);
-        vd.setResourceID("zego_uikit_call");
-        vd.setInvitees(Collections.singletonList(new ZegoUIKitUser(targetUserId)));
+
+
+    // =========================================================
+    // VIDEO CALL
+    // =========================================================
+
+    private void setupVideoCall() {
+
+        videoCall.setIsVideoCall(
+                true
+        );
+
+        videoCall.setResourceID(
+                "zego_uikit_call"
+        );
+
+        videoCall.setInvitees(
+                Collections.singletonList(
+                        new ZegoUIKitUser(
+                                receiverId,
+                                receiverName
+                        )
+                )
+        );
     }
-
-
-
-
 }

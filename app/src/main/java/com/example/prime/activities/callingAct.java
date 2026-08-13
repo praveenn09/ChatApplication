@@ -1,66 +1,209 @@
 package com.example.prime.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.prime.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import com.zegocloud.uikit.prebuilt.call.config.ZegoNotificationConfig;
 import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationConfig;
 import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationService;
 
+
 public class callingAct extends AppCompatActivity {
-   Button call;
-   EditText id;
+
+    private String receiverId = "";
+    private String receiverName = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_calling);
-        Toast.makeText(getApplicationContext(), "Please Enter a unique id for to talk to each other ", Toast.LENGTH_SHORT).show();
-      id=findViewById(R.id.getUserId);
-      call=findViewById(R.id.button2);
-      call.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              String userId=id.getText().toString();
-              if(userId.isEmpty()){
-                  id.setError("Please Enter Id");
-              }
-              else {
 
-                 startServices(userId);
-                  Intent i=new Intent(callingAct.this, videocall.class);
-                  startActivity(i);
-              }
-          }
-      });
+
+        // =====================================================
+        // GET RECEIVER FROM CHAT WINDOW
+        // =====================================================
+
+        receiverId =
+                getIntent()
+                        .getStringExtra("receiverId");
+
+
+        receiverName =
+                getIntent()
+                        .getStringExtra("receiverName");
+
+
+        if (receiverId == null ||
+                receiverId.isEmpty()) {
+
+            Toast.makeText(
+                    this,
+                    "Receiver not found",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            finish();
+
+            return;
+        }
+
+
+        // =====================================================
+        // START ZEGO SERVICE
+        // =====================================================
+
+        startServices();
+
+
+        // =====================================================
+        // OPEN VIDEO CALL SCREEN
+        // =====================================================
+
+        Intent intent =
+                new Intent(
+                        callingAct.this,
+                        videocall.class
+                );
+
+
+        intent.putExtra(
+                "receiverId",
+                receiverId
+        );
+
+
+        intent.putExtra(
+                "receiverName",
+                receiverName
+        );
+
+
+        startActivity(intent);
+
+
+        finish();
     }
 
-   private void startServices(String userId) {
-        Application application = getApplication(); // Android's application context
-        long appID = 1887249431;   // yourAppID 1887249431
-       // 303b44eb6a6a3c049e2d518fcc4834ce69f2de7b9f981b3e934375dab28fde06
-        String appSign ="303b44eb6a6a3c049e2d518fcc4834ce69f2de7b9f981b3e934375dab28fde06";  // yourAppSign
-        String userID =userId; // yourUserID, userID should only contain numbers, English characters, and '_'.
-        String userName =userId;   // yourUserName
 
-        ZegoUIKitPrebuiltCallInvitationConfig callInvitationConfig = new ZegoUIKitPrebuiltCallInvitationConfig();
-      //  callInvitationConfig.notifyWhenAppRunningInBackgroundOrQuit = true;
-        ZegoNotificationConfig notificationConfig = new ZegoNotificationConfig();
-        notificationConfig.sound = "zego_uikit_sound_call";
-        notificationConfig.channelID = "CallInvitation";
-        notificationConfig.channelName = "CallInvitation";
-        ZegoUIKitPrebuiltCallInvitationService.init(getApplication(), appID, appSign, userID, userName,callInvitationConfig);
+    // =========================================================
+    // ZEGO INITIALIZATION
+    // =========================================================
+
+    private void startServices() {
+
+
+        FirebaseUser currentUser =
+                FirebaseAuth
+                        .getInstance()
+                        .getCurrentUser();
+
+
+        if (currentUser == null) {
+
+            Toast.makeText(
+                    this,
+                    "User is not logged in",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            finish();
+
+            return;
+        }
+
+
+        // =====================================================
+        // CURRENT USER = ZEGO USER
+        // =====================================================
+
+        String userID =
+                currentUser.getUid();
+
+
+        String userName =
+                userID;
+
+
+        // =====================================================
+        // YOUR ZEGO APP ID
+        // =====================================================
+
+        long appID =
+                1361685803L;
+
+
+        // =====================================================
+        // YOUR ZEGO APP SIGN
+        // =====================================================
+
+        String appSign =
+                "b3d1c330ab3a7c94a9142b36156858baba530a4e033cd16b20e6695cba017147";
+
+
+        // =====================================================
+        // ZEGO CONFIG
+        // =====================================================
+
+        ZegoUIKitPrebuiltCallInvitationConfig
+                callInvitationConfig =
+                new ZegoUIKitPrebuiltCallInvitationConfig();
+
+
+        // =====================================================
+        // NOTIFICATION CONFIG
+        // =====================================================
+
+        ZegoNotificationConfig notificationConfig =
+                new ZegoNotificationConfig();
+
+
+        notificationConfig.sound =
+                "zego_uikit_sound_call";
+
+
+        notificationConfig.channelID =
+                "CallInvitation";
+
+
+        notificationConfig.channelName =
+                "CallInvitation";
+
+
+        // =====================================================
+        // INITIALIZE ZEGO
+        // =====================================================
+
+        ZegoUIKitPrebuiltCallInvitationService.init(
+                getApplication(),
+                appID,
+                appSign,
+                userID,
+                userName,
+                callInvitationConfig
+        );
     }
+
+
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
-        ZegoUIKitPrebuiltCallInvitationService.unInit();
+
+        /*
+         * Don't unInit ZEGO here.
+         *
+         * The service should remain available
+         * while the user is logged into the app.
+         */
     }
 }

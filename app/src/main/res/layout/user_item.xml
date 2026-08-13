@@ -1,54 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-     android:background="@drawable/outlines"
-    android:layout_margin="13.00dp">
+    android:layout_height="72dp"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp">
+
+
+    <!-- Dummy profile image -->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageprofilee"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+
+        android:src="@drawable/ic_dummy_user"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageprofilee"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:src="@drawable/wavepng"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="8dp"
-            android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/_1sdp"
-                android:paddingTop="@dimen/_13sdp"
-                android:text="Name"
-                android:textColor="@color/primary"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold"
+    <!-- Username -->
 
-                />
+    <TextView
+        android:id="@+id/username"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+
+        android:maxLines="1"
+        android:ellipsize="end"
+
+        android:text="Rahul"
+
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toStartOf="@id/chatTime"
+        app:layout_constraintStart_toEndOf="@id/imageprofilee"
+        app:layout_constraintTop_toTopOf="@id/imageprofilee" />
 
 
-        </LinearLayout>
+    <!-- Last message -->
+
+    <TextView
+        android:id="@+id/lastMessage"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+
+        android:maxLines="1"
+        android:ellipsize="end"
+
+        android:text="Hello Rahul"
+
+        android:textColor="#777777"
+        android:textSize="12sp"
+
+        app:layout_constraintEnd_toStartOf="@id/chatTime"
+        app:layout_constraintStart_toEndOf="@id/imageprofilee"
+        app:layout_constraintTop_toBottomOf="@id/username" />
 
 
-    </LinearLayout>
+    <!-- Time -->
+
+    <TextView
+        android:id="@+id/chatTime"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="7:48 PM"
+
+        android:textColor="#777777"
+        android:textSize="10sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/username" />
+
+    <TextView
+        android:id="@+id/unreadCount"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="4dp"
+
+        android:background="@drawable/unread_badge"
+
+        android:gravity="center"
+
+        android:text="1"
+        android:textColor="@android:color/white"
+        android:textSize="11sp"
+        android:textStyle="bold"
+
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chatTime" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

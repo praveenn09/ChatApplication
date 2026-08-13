@@ -1,86 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="@color/primary"
+
     tools:context=".activities.videocall">
 
+
+    <!-- ========================================= -->
+    <!-- TOP BAR -->
+    <!-- ========================================= -->
+
+    <ImageView
+        android:id="@+id/backFromVideoCall"
+
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+
+        android:src="@drawable/baseline_arrow_back"
+
+        android:contentDescription="Back"
+
+        app:tint="@color/white"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <TextView
-        android:id="@+id/ttextfygbh"
-        style=""
+        android:id="@+id/callPageTitle"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="50dp"
+
+        android:text="Call"
+
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:gravity="center"
+
+        app:layout_constraintStart_toEndOf="@id/backFromVideoCall"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="@id/backFromVideoCall"
+        app:layout_constraintBottom_toBottomOf="@id/backFromVideoCall" />
+
+
+    <!-- ========================================= -->
+    <!-- CALL ICON -->
+    <!-- ========================================= -->
+
+    <TextView
+        android:id="@+id/callMainIcon"
+
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+
+        android:layout_marginTop="75dp"
+
+        android:background="@drawable/background_image"
+
+        android:gravity="center"
+
+        android:text="📞"
+        android:textSize="40sp"
+
+        app:layout_constraintTop_toBottomOf="@id/backFromVideoCall"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- ========================================= -->
+    <!-- TITLE -->
+    <!-- ========================================= -->
+
+    <TextView
+        android:id="@+id/chooseCallTitle"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginBottom="522dp"
-        android:text="Let's Start Calling"
-        android:textSize="30dp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
+
+        android:layout_marginTop="22dp"
+
+        android:text="Choose Call Type"
+
+        android:textColor="@color/white"
+
+        android:textSize="24sp"
+
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@id/callMainIcon"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- ========================================= -->
+    <!-- SUBTITLE -->
+    <!-- ========================================= -->
 
     <TextView
-        android:id="@+id/ctuvygbhjnm"
+        android:id="@+id/callSubtitle"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="189dp"
-        android:layout_marginBottom="464dp"
-        android:text="Enter Unique Id"
-        android:textSize="21dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="8dp"
+
+        android:text="Select how you want to connect"
+
+        android:textColor="#CCCCCC"
+
+        android:textSize="14sp"
+
+        app:layout_constraintTop_toBottomOf="@id/chooseCallTitle"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ttextfygbh" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/newUserIDSecond"
-        android:layout_width="371dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/input_background"
-        android:hint="Enter Unique ID"
-        android:imeOptions="actionNext"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:paddingStart="@dimen/_16sdp"
-        android:paddingEnd="@dimen/_16sdp"
-        android:textColor="@color/primary_text"
-        android:textSize="@dimen/_13ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+
+    <!-- ========================================= -->
+    <!-- VOICE CALL CARD -->
+    <!-- ========================================= -->
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/voiceCallCard"
+
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="30dp"
+
+        app:cardCornerRadius="18dp"
+        app:cardElevation="5dp"
+
+        app:layout_constraintTop_toBottomOf="@id/callSubtitle"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ctuvygbhjnm" />
+        app:layout_constraintEnd_toEndOf="parent">
 
 
-    <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
-        android:id="@+id/voice_call"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="288dp"
-        android:layout_marginBottom="244dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
 
-    <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
-        android:id="@+id/video_call"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="244dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newUserIDSecond" />
+            android:id="@+id/voice_call"
 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+
+            android:text="🎙  Voice Call"
+
+            android:textSize="17sp"
+
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <!-- ========================================= -->
+    <!-- VIDEO CALL CARD -->
+    <!-- ========================================= -->
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/videoCallCard"
+
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="30dp"
+
+        app:cardCornerRadius="18dp"
+        app:cardElevation="5dp"
+
+        app:layout_constraintTop_toBottomOf="@id/voiceCallCard"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
+
+            android:id="@+id/video_call"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:gravity="center"
+
+            android:text="📹  Video Call"
+
+            android:textSize="17sp"
+
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <!-- ========================================= -->
+    <!-- INFORMATION -->
+    <!-- ========================================= -->
+
+    <TextView
+        android:id="@+id/callInfo"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="35dp"
+
+        android:gravity="center"
+
+        android:text="You can make a voice or video call with this user."
+
+        android:textColor="#AAAAAA"
+
+        android:textSize="13sp"
+
+        app:layout_constraintTop_toBottomOf="@id/videoCallCard"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

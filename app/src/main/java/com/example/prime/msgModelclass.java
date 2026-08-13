@@ -1,16 +1,20 @@
 package com.example.prime;
 
-import com.google.firebase.storage.StorageReference;
-
 public class msgModelclass {
+
     String message;
     String senderId;
     long timeStamp;
 
+    // Required by Firebase
     public msgModelclass() {
     }
 
-    public msgModelclass(String message, String senderId, long timeStamp) {
+    public msgModelclass(
+            String message,
+            String senderId,
+            long timeStamp) {
+
         this.message = message;
         this.senderId = senderId;
         this.timeStamp = timeStamp;

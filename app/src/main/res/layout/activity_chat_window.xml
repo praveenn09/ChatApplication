@@ -1,121 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@color/primary"
+
     tools:context=".activities.ChatWindow">
+
+
+    <!-- ========================================= -->
+    <!-- CHAT HEADER -->
+    <!-- ========================================= -->
+
     <LinearLayout
         android:id="@+id/chatWindowLinerLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_45sdp"
+
         android:orientation="horizontal"
-        >
+        android:gravity="center_vertical"
+
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingEnd="@dimen/_8sdp">
+
+
+        <!-- Back button -->
+
         <ImageView
             android:id="@+id/returntofirstactivity"
+
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:src="@drawable/baseline_arrow_back" />
+
+            android:src="@drawable/baseline_arrow_back"
+
+            android:contentDescription="Back" />
+
+
+        <!-- User profile -->
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/chatUserprofile"
+
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:background="@drawable/background_image"
-            android:layout_marginStart="@dimen/_2sdp"
-            />
+
+            android:layout_marginStart="@dimen/_5sdp"
+
+            android:src="@drawable/ic_dummy_user"
+
+            android:contentDescription="Profile" />
+
+
+        <!-- ================================= -->
+        <!-- USER NAME + STATUS -->
+        <!-- ================================= -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+
+            android:layout_marginStart="@dimen/_8sdp"
+
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+
+            <!-- Username -->
+
+            <TextView
+                android:id="@+id/ChatUserName"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="USERNAME"
+
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <!-- Online / Offline -->
+
+            <TextView
+                android:id="@+id/chatUserStatus"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="1dp"
+
+                android:text="Offline"
+
+                android:textColor="#AAAAAA"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+
+        <!-- ================================= -->
+        <!-- ANALYTICS -->
+        <!-- ================================= -->
 
         <TextView
-            android:id="@+id/ChatUserName"
-            android:layout_width="288dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_weight="1"
-            android:text="USERNAME"
+            android:id="@+id/chatAnalytics"
+
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_35sdp"
+
+            android:gravity="center"
+
+            android:text="📊"
+            android:textSize="20sp"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+
+            android:clickable="true"
+            android:focusable="true"
+
+            android:contentDescription="Chat Analytics" />
+
+
+        <!-- ================================= -->
+        <!-- CALL -->
+        <!-- ================================= -->
 
         <ImageView
             android:id="@+id/ChatCall"
+
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
-            android:layout_weight="1"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:src="@drawable/call" />
 
+            android:layout_marginStart="@dimen/_5sdp"
+
+            android:src="@drawable/call"
+
+            android:contentDescription="Call" />
 
     </LinearLayout>
 
 
+    <!-- ========================================= -->
+    <!-- MESSAGE AREA -->
+    <!-- ========================================= -->
+
     <FrameLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chatWindowLinerLayout"
+
+        android:layout_below="@id/chatWindowLinerLayout"
         android:layout_alignParentBottom="true"
+
         android:layout_marginTop="5dp"
         android:layout_marginBottom="77dp"
+
         android:background="@color/white">
 
+
         <androidx.recyclerview.widget.RecyclerView
+
             android:id="@+id/msgAdaptshowChat"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_4sdp">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            android:padding="@dimen/_4sdp"
+
+            android:clipToPadding="false"
+
+            android:overScrollMode="never" />
 
     </FrameLayout>
 
+
+    <!-- ========================================= -->
+    <!-- MESSAGE INPUT AREA -->
+    <!-- ========================================= -->
+
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_45sdp"
-    android:orientation="horizontal"
-    android:layout_alignParentBottom="true"
-    android:layout_marginStart="2.60dp"
-    android:layout_marginTop="2.60dp"
-    android:layout_marginBottom="2.60dp"
-    android:layout_marginEnd="2.60dp"
-    >
-    <androidx.cardview.widget.CardView
+
         android:layout_width="match_parent"
-        android:layout_height="45.5dp"
-        app:cardCornerRadius="32.50dp"
-        android:layout_marginStart="6.50dp"
-        android:layout_marginEnd="9.10dp"
-        android:layout_weight="1">
-    <EditText
-        android:id="@+id/writemsgtext"
-        android:layout_width="348dp"
-        android:layout_height="45dp"
-        android:background="@null"
-        android:hint="Type The Message...."
-        android:paddingStart="13.00dp"
-        />
-    </androidx.cardview.widget.CardView>
+        android:layout_height="@dimen/_45sdp"
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/sendMessageButton"
-        android:layout_width="110dp"
-        android:layout_height="45.5dp"
-        app:cardCornerRadius="32.50dp"
-        android:layout_marginStart="6.50dp"
-        android:layout_marginEnd="6.50dp"
-        android:layout_weight="1">
-        <ImageView
+        android:orientation="horizontal"
 
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginLeft="@dimen/_6sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:src="@drawable/round_send_24"
-            />
-    </androidx.cardview.widget.CardView>
+        android:gravity="center_vertical"
 
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+
+        android:layout_marginBottom="3dp">
+
+
+        <!-- ================================= -->
+        <!-- MESSAGE INPUT -->
+        <!-- ================================= -->
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+
+            android:layout_weight="1"
+
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+
+            app:cardCornerRadius="25dp"
+            app:cardElevation="2dp">
+
+
+            <EditText
+
+                android:id="@+id/writemsgtext"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="@null"
+
+                android:hint="Type the message..."
+
+                android:singleLine="true"
+
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+
+                android:textSize="14sp" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- ================================= -->
+        <!-- SEND BUTTON -->
+        <!-- ================================= -->
+
+        <androidx.cardview.widget.CardView
+
+            android:id="@+id/sendMessageButton"
+
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="6dp"
+
+            app:cardCornerRadius="25dp"
+            app:cardElevation="2dp">
+
+
+            <ImageView
+
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+
+                android:layout_gravity="center"
+
+                android:src="@drawable/round_send_24"
+
+                android:contentDescription="Send message" />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>

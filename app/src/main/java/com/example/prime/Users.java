@@ -1,18 +1,47 @@
 package com.example.prime;
 
 public class Users {
-    String username, email, password, profileImage, userId;
+
+    private String username;
+    private String email;
+    private String profileImage;
+    private String userId;
+
+    private boolean online;
+    private long lastSeen;
+
+
+    // =========================================
+    // REQUIRED BY FIREBASE
+    // =========================================
 
     public Users() {
     }
 
-    public Users(String username, String email, String password, String profileImage, String userId) {
+
+    // =========================================
+    // CONSTRUCTOR
+    // =========================================
+
+    public Users(
+            String username,
+            String email,
+            String profileImage,
+            String userId) {
+
         this.username = username;
         this.email = email;
-        this.password = password;
         this.profileImage = profileImage;
         this.userId = userId;
+
+        this.online = false;
+        this.lastSeen = 0;
     }
+
+
+    // =========================================
+    // USERNAME
+    // =========================================
 
     public String getUsername() {
         return username;
@@ -22,6 +51,11 @@ public class Users {
         this.username = username;
     }
 
+
+    // =========================================
+    // EMAIL
+    // =========================================
+
     public String getEmail() {
         return email;
     }
@@ -30,13 +64,10 @@ public class Users {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    // =========================================
+    // PROFILE IMAGE
+    // =========================================
 
     public String getProfileImage() {
         return profileImage;
@@ -46,6 +77,11 @@ public class Users {
         this.profileImage = profileImage;
     }
 
+
+    // =========================================
+    // USER ID
+    // =========================================
+
     public String getUserId() {
         return userId;
     }
@@ -53,5 +89,30 @@ public class Users {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-}
 
+
+    // =========================================
+    // ONLINE STATUS
+    // =========================================
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+
+    // =========================================
+    // LAST SEEN
+    // =========================================
+
+    public long getLastSeen() {
+        return lastSeen;
+    }
+
+    public void setLastSeen(long lastSeen) {
+        this.lastSeen = lastSeen;
+    }
+}
