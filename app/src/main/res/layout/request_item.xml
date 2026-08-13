@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="76dp"
+
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+
+        <!-- ============================= -->
+        <!-- PROFILE IMAGE -->
+        <!-- ============================= -->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/requestProfile"
+
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+
+            android:src="@drawable/ic_dummy_user"
+
+            android:contentDescription="User profile"
+
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/primary" />
+
+
+        <!-- ============================= -->
+        <!-- USER INFORMATION -->
+        <!-- ============================= -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+
+            android:layout_marginStart="12dp"
+
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/requestUserName"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="User Name"
+
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="2dp"
+
+                android:text="Wants to connect with you"
+
+                android:textColor="#888888"
+                android:textSize="12sp"
+
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+
+        <!-- ============================= -->
+        <!-- ACCEPT BUTTON -->
+        <!-- ============================= -->
+
+        <TextView
+            android:id="@+id/acceptRequest"
+
+            android:layout_width="78dp"
+            android:layout_height="40dp"
+
+            android:layout_marginEnd="7dp"
+
+            android:gravity="center"
+
+            android:text="✓  Accept"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+
+            android:background="@drawable/bg_accept_button"
+
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground" />
+
+
+        <!-- ============================= -->
+        <!-- DECLINE BUTTON -->
+        <!-- ============================= -->
+
+        <TextView
+            android:id="@+id/declineRequest"
+
+            android:layout_width="72dp"
+            android:layout_height="40dp"
+
+            android:gravity="center"
+
+            android:text="Decline"
+            android:textColor="#D32F2F"
+            android:textSize="12sp"
+            android:textStyle="bold"
+
+            android:background="@drawable/bg_decline_button"
+
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
